@@ -29,14 +29,12 @@ class PostController extends MainController {
 
         $postModel = new Post($this->container);
 
-        session_start();
-
         $postData['user_id'] = $_SESSION['user'];
         $postData['image'] = $imageName;
 
         $postModel->create($postData);
 
-        self::send200Response();
+        return $response->withStatus(200)->withJson([]);
     }
 
     public function update($request, $response, $args) {
@@ -61,6 +59,6 @@ class PostController extends MainController {
 
         $postModel->update($args['id'], $newPostData);
 
-        self::send200Response();
+        return $response->withStatus(200);
     }
 }

@@ -10,16 +10,12 @@ $public = array(
 );
 
 $restricted = array(
-    'admin'
+    '/admin'
 );
 
-$uriSegments = explode("/", parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH));
-
-$routeName = $uriSegments[1];
+$routeName = $request->getUri()->getPath();
 
 if (in_array($routeName, $restricted)) {
-    session_start();
-
     if (!isset($_SESSION['user'])) {
         return $response->withRedirect('/login');
 

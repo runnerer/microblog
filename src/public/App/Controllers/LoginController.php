@@ -27,15 +27,13 @@ class LoginController extends MainController {
             self::sendErrorResponse('Wrong Email or Password. Please try again.');
         }
         else {
-            session_start();
             $_SESSION['user'] = $user[0]->id;
 
-            self::send200Response();
+            return $response->withStatus(200)->withJson([]);
         }
     }
 
     public function logout($request, $response, $args) {
-        session_start();
         unset($_SESSION['user']);
 
         return $response->withRedirect('/');

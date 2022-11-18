@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 define("VIEWS_DIR", __DIR__ . '/App/Views');
 define("CACHE_DIR", __DIR__ . '/App/Views/Cache');
 define("IMAGES_DIR", __DIR__ . '/Uploads/Images');
