@@ -59,6 +59,6 @@ class PostController extends MainController {
 
         $postModel->update($args['id'], $newPostData);
 
-        return $response->withStatus(200);
+        return $response->withStatus(200)->withJson([]);
     }
 }
