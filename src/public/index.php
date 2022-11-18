@@ -1,5 +1,9 @@
 <?php
 
+define("VIEWS_DIR", __DIR__ . '/App/Views');
+define("CACHE_DIR", __DIR__ . '/App/Views/Cache');
+define("IMAGES_DIR", __DIR__ . '/Uploads/Images');
+
 $config = [];
 
 require '../vendor/autoload.php';
@@ -20,6 +24,11 @@ $container['db'] = function ($c) {
     return $capsule;
 };
 
+$container['App\Controllers\MainController'] = function ($c) {
+    return new App\Controllers\MainController($c);
+};
+
+require 'App/Middleware/AuthMiddleware.php';
 require 'App/Config/routes.php';
 
 $app->run();
