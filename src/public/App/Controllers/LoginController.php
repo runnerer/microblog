@@ -21,16 +21,17 @@ class LoginController extends MainController {
         }
 
         $userModel = new User($this->container);
-        $user = $userModel->getByEmailAndPassword($userData['email'], $userData['password']);
+        $user = $userModel->getByEmail($userData['email']);
 
         if (empty($user)) {
-            self::sendErrorResponse('Wrong Email or Password. Please try again.');
+            self::sendErrorResponse('Wrong Email. Please try again.');
         }
-        else {
-            $_SESSION['user'] = $user[0]->id;
 
-            return $response->withStatus(200)->withJson([]);
+        if (!$this->container->AuthenticationService->authenticate($userData, $user)) {
+            self::sendErrorResponse('Wrong Password. Please try again.');
         }
+
+        return $response->withStatus(200)->withJson([]);
     }
 
     public function logout($request, $response, $args) {

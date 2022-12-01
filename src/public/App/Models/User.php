@@ -16,7 +16,15 @@ class User {
         return $this->table->get();
     }
 
-    public function getByEmailAndPassword($email, $password) {
-        return $this->table->where('email', $email)->where('password', $password)->get()->toArray();
+    public function getByEmail($email) {
+        return $this->table->where('email', $email)->get()->toArray();
+    }
+
+    public function create($userData) {
+        return $this->table->insert([
+            'email' => $userData['email'],
+            'password' => $userData['password'],
+            'name' => $userData['name']
+        ]);
     }
 }

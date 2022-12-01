@@ -44,13 +44,12 @@ CREATE TABLE IF NOT EXISTS `users` (
   `created_at` datetime DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   UNIQUE KEY `email` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table microblog.users: ~2 rows (approximately)
+-- Dumping data for table microblog.users: ~1 rows (approximately)
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
 INSERT INTO `users` (`id`, `email`, `password`, `name`, `created_at`) VALUES
-	(1, 'beni@abv.bg', '123456789', 'beni bendas', '2022-11-14 13:50:45'),
-	(2, 'geni@abv.bg', '5555555555', 'geni gobrev', '2022-11-14 13:51:38');
+	(3, 'pesho@abv.bg', '$2y$10$HQQg83DxOk83y4N871A27.t349M3pq4o7x6e6aYVd35T2PpnFYN5i', 'Peter', '2022-11-30 15:38:28');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

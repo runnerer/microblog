@@ -10,6 +10,8 @@ $app->post('/posts/{id}', App\Controllers\PostController::class . ':update');
 
 $app->get('/admin', App\Controllers\AdminController::class . ':index');
 
+$app->post('/users', App\Controllers\UserController::class . ':create');
+
 $app->get('/uploads/images/{name}', function($request, $response, $args) {
     $image = @file_get_contents(__DIR__ . '/Uploads/Images/'. $args['name']);
 

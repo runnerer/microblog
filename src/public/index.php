@@ -30,6 +30,10 @@ $container['App\Controllers\MainController'] = function ($c) {
     return new App\Controllers\MainController($c);
 };
 
+$container['AuthenticationService'] = function ($c) {
+    return new App\Models\Services\AuthenticationService($c);
+};
+
 require 'App/Middleware/AuthMiddleware.php';
 require 'App/Config/routes.php';
 
