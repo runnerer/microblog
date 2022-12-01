@@ -37,4 +37,10 @@ class MainController {
     public static function getRedirectResponse($url, $response) {
         return $response->withRedirect($url);
     }
+
+    public static function getFileResponse($file, $response) {
+        $response->write($file);
+
+        return $response->withHeader('Content-Type', FILEINFO_MIME_TYPE);
+    }
 }

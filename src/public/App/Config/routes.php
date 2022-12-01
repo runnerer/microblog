@@ -12,12 +12,4 @@ $app->get('/admin', App\Controllers\AdminController::class . ':index');
 
 $app->post('/users', App\Controllers\UserController::class . ':create');
 
-$app->get('/uploads/images/{name}', function($request, $response, $args) {
-    $image = @file_get_contents(__DIR__ . '/Uploads/Images/'. $args['name']);
-
-    if ($image !== FALSE) {
-        $response->write($image);
-
-        return $response->withHeader('Content-Type', FILEINFO_MIME_TYPE);
-    }
-});
+$app->get('/uploads/images/{name}', App\Controllers\ImagesController::class);
