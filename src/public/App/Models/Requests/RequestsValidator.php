@@ -3,6 +3,9 @@
 namespace App\Models\Requests;
 
 class RequestsValidator {
+    public static $isRequestValid = true;
+    public static $errorMessage = '';
+
     public static function validate($properties) {
         $errorMessage = false;
 
@@ -28,7 +31,8 @@ class RequestsValidator {
             }
 
             if ($errorMessage !== false) {
-                return $errorMessage;
+                self::$isRequestValid = false;
+                self::$errorMessage = $errorMessage;
             }
         }
     }

@@ -18,10 +18,10 @@ class UserController extends MainController {
     public function create($request, $response, $args) {
         $userData = $request->getParsedBody();
 
-        $isRequestValid = RequestsValidator::validate($userData);
+        RequestsValidator::validate($userData);
 
-        if (is_string($isRequestValid)) {
-            self::sendErrorResponse($isRequestValid);
+        if (!RequestsValidator::$isRequestValid) {
+            self::sendErrorResponse(RequestsValidator::$errorMessage);
         }
 
         $userData['password'] = password_hash($userData['password'], PASSWORD_DEFAULT);

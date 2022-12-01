@@ -19,10 +19,10 @@ class PostController extends MainController {
     public function create($request, $response, $args) {
         $postData = $request->getParsedBody();
 
-        $isRequestValid = RequestsValidator::validate($postData);
+        RequestsValidator::validate($postData);
 
-        if (is_string($isRequestValid)) {
-            self::sendErrorResponse($isRequestValid);
+        if (!RequestsValidator::$isRequestValid) {
+            self::sendErrorResponse(RequestsValidator::$errorMessage);
         }
 
         $imageName = UploadFile::image($postData['image']);
@@ -40,10 +40,10 @@ class PostController extends MainController {
     public function update($request, $response, $args) {
         $newPostData = $request->getParsedBody();
 
-        $isRequestValid = RequestsValidator::validate($newPostData);
+        RequestsValidator::validate($newPostData);
 
-        if (is_string($isRequestValid)) {
-            self::sendErrorResponse($isRequestValid);
+        if (!RequestsValidator::$isRequestValid) {
+            self::sendErrorResponse(RequestsValidator::$errorMessage);
         }
 
         if (strpos($newPostData['image'], 'uploads') === false) {

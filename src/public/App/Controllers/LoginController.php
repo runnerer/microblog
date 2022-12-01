@@ -14,10 +14,10 @@ class LoginController extends MainController {
     public function login($request, $response, $args) {
         $userData = $request->getParsedBody();
 
-        $isRequestValid = RequestsValidator::validate($userData);
+        RequestsValidator::validate($userData);
 
-        if (is_string($isRequestValid)) {
-            self::sendErrorResponse($isRequestValid);
+        if (!RequestsValidator::$isRequestValid) {
+            self::sendErrorResponse(RequestsValidator::$errorMessage);
         }
 
         $userModel = new User($this->container);
