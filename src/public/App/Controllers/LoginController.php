@@ -17,26 +17,26 @@ class LoginController extends MainController {
         RequestsValidator::validate($userData);
 
         if (!RequestsValidator::$isRequestValid) {
-            self::sendErrorResponse(RequestsValidator::$errorMessage);
+            return self::getErrorResponse(RequestsValidator::$errorMessage, $response);
         }
 
         $userModel = new User($this->container);
         $user = $userModel->getByEmail($userData['email']);
 
         if (empty($user)) {
-            self::sendErrorResponse('Wrong Email. Please try again.');
+            return self::getErrorResponse('Wrong Email. Please try again.', $response);
         }
 
         if (!$this->container->AuthenticationService->authenticate($userData, $user)) {
-            self::sendErrorResponse('Wrong Password. Please try again.');
+            return self::getErrorResponse('Wrong Password. Please try again.', $response);
         }
 
-        return $response->withStatus(200)->withJson([]);
+        return self::getOkResponse([], $response);
     }
 
     public function logout($request, $response, $args) {
         unset($_SESSION['user']);
 
-        return $response->withRedirect('/');
+        return self::getRedirectResponse('/', $response);
     }
 }

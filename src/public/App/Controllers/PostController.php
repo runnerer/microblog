@@ -22,7 +22,7 @@ class PostController extends MainController {
         RequestsValidator::validate($postData);
 
         if (!RequestsValidator::$isRequestValid) {
-            self::sendErrorResponse(RequestsValidator::$errorMessage);
+            return self::getErrorResponse(RequestsValidator::$errorMessage, $response);
         }
 
         $imageName = UploadFile::image($postData['image']);
@@ -34,7 +34,7 @@ class PostController extends MainController {
 
         $postModel->create($postData);
 
-        return $response->withStatus(200)->withJson([]);
+        return self::getOkResponse([], $response);
     }
 
     public function update($request, $response, $args) {
@@ -43,7 +43,7 @@ class PostController extends MainController {
         RequestsValidator::validate($newPostData);
 
         if (!RequestsValidator::$isRequestValid) {
-            self::sendErrorResponse(RequestsValidator::$errorMessage);
+            return self::getErrorResponse(RequestsValidator::$errorMessage, $response);
         }
 
         if (strpos($newPostData['image'], 'uploads') === false) {
@@ -59,6 +59,6 @@ class PostController extends MainController {
 
         $postModel->update($args['id'], $newPostData);
 
-        return $response->withStatus(200)->withJson([]);
+        return self::getOkResponse([], $response);
     }
 }

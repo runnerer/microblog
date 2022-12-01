@@ -24,19 +24,17 @@ class MainController {
         echo $blade->view()->make($viewName, $data)->render();
     }
 
-    public static function sendErrorResponse($message) {
-        http_response_code(400);
-
-        die(json_encode([
+    public static function getErrorResponse($message, $response) {
+        return $response->withStatus(400)->withJson([
             'message' => $message
-        ]));
+        ]);
     }
 
-    public static function send200Response($data = []) {
-        http_response_code(200);
+    public static function getOkResponse($data = [], $response) {
+        return $response->withStatus(200)->withJson($data);
+    }
 
-        die(json_encode(array_merge([
-            'result' => true
-        ], $data)));
+    public static function getRedirectResponse($url, $response) {
+        return $response->withRedirect($url);
     }
 }

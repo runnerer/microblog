@@ -21,7 +21,7 @@ class UserController extends MainController {
         RequestsValidator::validate($userData);
 
         if (!RequestsValidator::$isRequestValid) {
-            self::sendErrorResponse(RequestsValidator::$errorMessage);
+            return self::getErrorResponse(RequestsValidator::$errorMessage, $response);
         }
 
         $userData['password'] = password_hash($userData['password'], PASSWORD_DEFAULT);
@@ -30,10 +30,10 @@ class UserController extends MainController {
         $user = $userModel->create($userData);
 
         if (empty($user)) {
-            self::sendErrorResponse('Error while creating your account. Please try again.');
+            return self::getErrorResponse('Error while creating your account. Please try again.', $response);
         }
 
-        return $response->withStatus(200)->withJson([]);
+        return self::getOkResponse([], $response);
     }
 
     public function update($request, $response, $args) {
