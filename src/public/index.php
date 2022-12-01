@@ -16,24 +16,7 @@ $app = new \Slim\App(['settings' => $config]);
 
 $container = $app->getContainer();
 
-$container['db'] = function ($c) {
-    $capsule = new \Illuminate\Database\Capsule\Manager;
-    $capsule->addConnection($c['settings']['db']);
-
-    $capsule->setAsGlobal();
-    $capsule->bootEloquent();
-
-    return $capsule;
-};
-
-$container['App\Controllers\MainController'] = function ($c) {
-    return new App\Controllers\MainController($c);
-};
-
-$container['AuthenticationService'] = function ($c) {
-    return new App\Models\Services\AuthenticationService($c);
-};
-
+require 'App/Config/dependencies.php';
 require 'App/Middleware/AuthMiddleware.php';
 require 'App/Config/routes.php';
 

@@ -2,8 +2,8 @@
 
 namespace App\Models\Services;
 
-class UploadFile {
-    public static function image($base64String) {
+class UploadImageService {
+    public function upload($base64String) {
         $extension = explode('/', mime_content_type($base64String))[1];
         $imageName = self::generateRandomString(7). '.'. $extension;
         $data = base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', $base64String));
@@ -13,7 +13,7 @@ class UploadFile {
         return $imageName;
     }
 
-    private static function generateRandomString($length = 10) {
+    private function generateRandomString($length = 10) {
         $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
         $charactersLength = strlen($characters);
         $randomString = '';
