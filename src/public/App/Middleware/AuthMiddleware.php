@@ -5,10 +5,6 @@ use \Psr\Http\Message\ResponseInterface as Response;
 
 $app->add(function (Request $request, Response $response, callable $next) {
 
-$public = array(
-   '/'
-);
-
 $restricted = array(
     '/admin'
 );

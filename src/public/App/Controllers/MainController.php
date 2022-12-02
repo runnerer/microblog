@@ -8,13 +8,11 @@ use Philo\Blade\Blade;
 class MainController {
     protected $container;
 
-    public function __construct(Container $container)
-    {
+    public function __construct(Container $container) {
         $this->container = $container;
     }
 
-    public function __get($var)
-    {
+    public function __get($var) {
         return $this->container->{$var};
     }
 
