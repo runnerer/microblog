@@ -3,7 +3,8 @@
         "slim/slim": "3.*",
         "illuminate/database": "~5.1",
         "philo/laravel-blade": "^3.1",
-        "phpunit/phpunit": "7"
+        "phpunit/phpunit": "7",
+        "vlucas/phpdotenv": "^5.5"
     },
     "autoload": {
         "psr-4": {

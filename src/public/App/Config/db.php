@@ -1,11 +1,14 @@
 <?php
 
-$config['db']['host']   = 'localhost';
-$config['db']['username']   = 'root';
-$config['db']['password']   = '';
-$config['db']['database'] = 'microblog';
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+$dotenv->load();
 
-$config['db']['driver']   = 'mysql';
-$config['db']['charset']   = 'utf8';
-$config['db']['collation']   = 'utf8_unicode_ci';
-$config['db']['prefix'] = '';
+$config['db']['host'] = $_ENV['host'];
+$config['db']['username'] = $_ENV['username'];
+$config['db']['password'] = $_ENV['password'];
+$config['db']['database'] = $_ENV['database'];
+
+$config['db']['driver'] = $_ENV['driver'];
+$config['db']['charset'] = $_ENV['charset'];
+$config['db']['collation'] = $_ENV['collation'];
+$config['db']['prefix'] = $_ENV['prefix'];
