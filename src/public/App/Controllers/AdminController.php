@@ -9,8 +9,8 @@ class AdminController extends MainController {
     public function index($request, $response, $args) {
         $post = new Post($this->container);
 
-        self::view("admin", [
+        return self::view("admin", [
             'posts' => $post->get()
-        ]);
+        ], $response);
     }
 }

@@ -10,9 +10,9 @@ class UserController extends MainController {
     public function index($request, $response, $args) {
         $userModel = new User($this->container);
 
-        self::view("users", [
+        return self::view("users", [
             'users' => $userModel->get()
-        ]);
+        ], $response);
     }
 
     public function create($request, $response, $args) {

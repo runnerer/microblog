@@ -10,9 +10,9 @@ class PostController extends MainController {
     public function index($request, $response, $args) {
         $post = new Post($this->container);
 
-        self::view("posts", [
+        return self::view("posts", [
             'posts' => $post->get()
-        ]);
+        ], $response);
     }
 
     public function create($request, $response, $args) {

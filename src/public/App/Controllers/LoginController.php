@@ -8,7 +8,7 @@ use App\Models\Requests\RequestsValidator;
 
 class LoginController extends MainController {
     public function index($request, $response, $args) {
-        self::view('login');
+        return self::view('login', [], $response);
     }
 
     public function login($request, $response, $args) {

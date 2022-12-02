@@ -19,7 +19,7 @@ class AdminSideTest extends BaseTestCase {
      */
     public function loginAndGetAdminPage() {
         $response = $this->runApp('POST', '/doLogin', [
-            'email' => 'beni@abv.bg',
+            'email' => 'pesho@abv.bg',
             'password' => '123456789'
         ]);
 
@@ -36,7 +36,7 @@ class AdminSideTest extends BaseTestCase {
      */
     public function loginAndCreatePost() {
         $response = $this->runApp('POST', '/doLogin', [
-            'email' => 'beni@abv.bg',
+            'email' => 'pesho@abv.bg',
             'password' => '123456789'
         ]);
 
@@ -57,7 +57,7 @@ class AdminSideTest extends BaseTestCase {
      */
     public function loginAndEditPost() {
         $response = $this->runApp('POST', '/doLogin', [
-            'email' => 'beni@abv.bg',
+            'email' => 'pesho@abv.bg',
             'password' => '123456789'
         ]);
 

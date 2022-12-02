@@ -16,10 +16,12 @@ class MainController {
         return $this->container->{$var};
     }
 
-    public static function view($viewName, $data = []) {
+    public static function view($viewName, $data = [], $response) {
         $blade = new Blade(VIEWS_DIR, CACHE_DIR);
 
-        echo $blade->view()->make($viewName, $data)->render();
+        return $response->getBody()->write(
+            $blade->view()->make($viewName, $data)->render()
+        );
     }
 
     public static function getErrorResponse($message, $response) {

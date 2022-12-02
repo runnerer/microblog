@@ -47,20 +47,7 @@ class BaseTestCase extends TestCase {
 
         $container = $app->getContainer();
 
-        $container['db'] = function ($c) {
-            $capsule = new \Illuminate\Database\Capsule\Manager;
-            $capsule->addConnection($c['settings']['db']);
-
-            $capsule->setAsGlobal();
-            $capsule->bootEloquent();
-
-            return $capsule;
-        };
-
-        $container['App\Controllers\MainController'] = function ($c) {
-            return new App\Controllers\MainController($c);
-        };
-
+        require '../src/public/App/Config/dependencies.php';
         require '../src/public/App/Middleware/AuthMiddleware.php';
         require '../src/public/App/Config/routes.php';
 
